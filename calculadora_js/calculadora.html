@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Calculadora JS</title>
+    </head>
+    <body>
+        <p id="display">0</p>
+        <button type="button" id="pi" onclick="clicked(this)">&pi;</button>
+        <button type="button" id="sign" onclick="clicked(this)">&plusmn;</button>
+        <button type="button" id="sqrt" onclick="clicked(this)">&radic;</button>
+        <button type="button" id="C" onclick="clicked(this)">C</button><br/>
+        <button type="button" id="7" onclick="clicked(this)">7</button>
+        <button type="button" id="8" onclick="clicked(this)">8</button>
+        <button type="button" id="9" onclick="clicked(this)">9</button>
+        <button type="button" id="/" onclick="clicked(this)">&divide;</button><br/>
+        <button type="button" id="4" onclick="clicked(this)">4</button>
+        <button type="button" id="5" onclick="clicked(this)">5</button>
+        <button type="button" id="6" onclick="clicked(this)">6</button>
+        <button type="button" id="*" onclick="clicked(this)">&times;</button><br/>
+        <button type="button" id="1" onclick="clicked(this)">1</button>
+        <button type="button" id="2" onclick="clicked(this)">2</button>
+        <button type="button" id="3" onclick="clicked(this)">3</button>
+        <button type="button" id="-" onclick="clicked(this)">-</button><br/>
+        <button type="button" id="=" onclick="clicked(this)">=</button>
+        <button type="button" id="0" onclick="clicked(this)">0</button>
+        <button type="button" id="." onclick="clicked(this)">.</button>
+        <button type="button" id="+" onclick="clicked(this)">+</button>
+    </body>
+
+    <script>
+        let digits = ["0","1","2","3","4","5","6","7","8","9"]
+        let constants = { "pi": Math.PI }
+        let unary_operations = {
+            "sqrt": Math.sqrt,
+            "sign": function(a){return -1*a}
+        }
+        let binary_operations = {
+            "+": function(a,b){return a+b},
+            "-": function(a,b){return a+b},
+            "*": function(a,b){return a+b},
+            "/": function(a,b){return a+b}
+        }
+        let pending_operation = null
+
+        var editing = false
+        let hasdot = false
+        let display = document.getElementById("display")
+
+        function clicked(button) {
+            let option = button.id
+            let value = parseFloat(display.textContent)
+            if (digits.includes(option)) {
+                value = processDigit(option)
+            } else if (option in constants) {
+                value = constants[option]
+            } else if (option in unary_operations) {
+                value = unary_operations[option](value)
+                editing = false
+            } else if (option == "C") {
+                accumulator = 0;
+                pending_operation = null
+                value = 0;
+                editing = false
+            } else if (option in binary_operations){
+                let op = binary_operations[option]
+                value = processBinaryOperation(op, value)
+                editing = false
+            } else if (option == "=") {
+                value = execute_pending_operation(value)
+                editing = false
+            }
+
+            if (option == ".") {
+                processDot()
+            } else {
+                display.textContent = value
+            }
+        }
+
+        function processDigit(digit) {
+            var number = display.textContent
+            if (!editing) {
+                number = "" + digit
+            } else {
+                number += digit
+            }
+            editing = true
+            return number
+        }
+
+        function processDot() {
+            if (!editing) {
+                display.textContent = "0."
+            } else {
+                if (hasdot) return
+                display.textContent += "."
+            }
+            editing = true
+            hasdot = true
+        }
+
+        function execute_pending_operation(value) {
+            var n = value
+            if (pending_operation) {
+                n = pending_operation.fn(pending_operation.value, n)
+            }
+            pending_operation = null
+            return n
+        }
+
+        function processBinaryOperation(operation, value) {
+            let n = execute_pending_operation(value)
+            pending_operation = { fn: operation, value: n }
+            return n
+        }
+    </script>
+</html>
