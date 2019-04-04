@@ -3,29 +3,44 @@
     <head>
         <meta charset="utf-8">
         <title>Calculadora JS</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <p id="display">0</p>
-        <button type="button" id="pi" onclick="clicked(this)">&pi;</button>
-        <button type="button" id="sign" onclick="clicked(this)">&plusmn;</button>
-        <button type="button" id="sqrt" onclick="clicked(this)">&radic;</button>
-        <button type="button" id="C" onclick="clicked(this)">C</button><br/>
-        <button type="button" id="7" onclick="clicked(this)">7</button>
-        <button type="button" id="8" onclick="clicked(this)">8</button>
-        <button type="button" id="9" onclick="clicked(this)">9</button>
-        <button type="button" id="/" onclick="clicked(this)">&divide;</button><br/>
-        <button type="button" id="4" onclick="clicked(this)">4</button>
-        <button type="button" id="5" onclick="clicked(this)">5</button>
-        <button type="button" id="6" onclick="clicked(this)">6</button>
-        <button type="button" id="*" onclick="clicked(this)">&times;</button><br/>
-        <button type="button" id="1" onclick="clicked(this)">1</button>
-        <button type="button" id="2" onclick="clicked(this)">2</button>
-        <button type="button" id="3" onclick="clicked(this)">3</button>
-        <button type="button" id="-" onclick="clicked(this)">-</button><br/>
-        <button type="button" id="=" onclick="clicked(this)">=</button>
-        <button type="button" id="0" onclick="clicked(this)">0</button>
-        <button type="button" id="." onclick="clicked(this)">.</button>
-        <button type="button" id="+" onclick="clicked(this)">+</button>
+        <div class="button-outer">
+            <div class="button-line">
+                <div id="display">0</div>
+            </div>
+            <div class="button-line">
+                <button type="button" class="operation" id="pi" onclick="clicked(this)">&pi;</button>
+                <button type="button" class="operation" id="sign" onclick="clicked(this)">&plusmn;</button>
+                <button type="button" class="operation" id="sqrt" onclick="clicked(this)">&radic;</button>
+                <button type="button" class="operation" id="C" onclick="clicked(this)">C</button>
+            </div>
+            <div class="button-line">
+                <button type="button" class="digit" id="7" onclick="clicked(this)">7</button>
+                <button type="button" class="digit" id="8" onclick="clicked(this)">8</button>
+                <button type="button" class="digit" id="9" onclick="clicked(this)">9</button>
+                <button type="button" class="operation" id="/" onclick="clicked(this)">&divide;</button>
+            </div>
+            <div class="button-line">
+                <button type="button" class="digit" id="4" onclick="clicked(this)">4</button>
+                <button type="button" class="digit" id="5" onclick="clicked(this)">5</button>
+                <button type="button" class="digit" id="6" onclick="clicked(this)">6</button>
+                <button type="button" class="operation" id="*" onclick="clicked(this)">&times;</button>
+            </div>
+            <div class="button-line">
+                <button type="button" class="digit" id="1" onclick="clicked(this)">1</button>
+                <button type="button" class="digit" id="2" onclick="clicked(this)">2</button>
+                <button type="button" class="digit" id="3" onclick="clicked(this)">3</button>
+                <button type="button" class="operation" id="-" onclick="clicked(this)">-</button>
+            </div>
+            <div class="button-line">
+                <button type="button" class="operation" id="=" onclick="clicked(this)">=</button>
+                <button type="button" class="digit" id="0" onclick="clicked(this)">0</button>
+                <button type="button" class="digit" id="." onclick="clicked(this)">.</button>
+                <button type="button" class="operation" id="+" onclick="clicked(this)">+</button>
+            </div>
+        </div>
     </body>
 
     <script>

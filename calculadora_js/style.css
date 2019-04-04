@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.button-line {
+    display: flex;
+    flex-flow: row nowrap;
+    flex-grow: 1;
+    width: 99vw;
+    margin: 0;
+    justify-content: space-evenly;
+}
+
+.button-outer {
+    display: flex;
+    flex-flow: column nowrap;
+    flex-grow: 1;
+    height: 99vh;
+    margin: 0;
+}
+
+button {
+    width: 100%;
+    margin: 1px 1px;
+}
+
+.operation {
+    background-color: rgb(100, 120, 180);
+    border: none;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.digit {
+    background-color: rgb(250, 140, 40);
+    border: none;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+#display {
+    padding-top: 20px;
+    /* size */
+    margin: 0;
+    width: 100%;
+    min-width: 0;
+    /* font */
+    font-family: monospace;
+    font-size: 36pt;
+    font-weight: bold;
+    text-align: right;
+    /* Color */
+    color: #4e2;
+    background-color: #000;
+    /* alignment */
+    text-align:right;
+    /* Show ellipsis. */
+    white-space: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
